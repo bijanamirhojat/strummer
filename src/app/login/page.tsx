@@ -55,12 +55,11 @@ export default function LoginPage() {
           <div className="absolute bottom-20 right-20 w-96 h-96 bg-orange-600 rounded-full filter blur-3xl"></div>
         </div>
         <div className="relative z-10 flex flex-col justify-center items-center w-full p-12">
-          <div className="flex items-center gap-4 mb-8">
-            <div className="bg-white/20 backdrop-blur-sm p-4 rounded-2xl">
-              <Guitar className="w-12 h-12 text-white" />
-            </div>
-            <h1 className="text-4xl font-bold text-white">Strummer</h1>
-          </div>
+          <img 
+            src="/strummer_academy_logo.png" 
+            alt="Strummer Academy" 
+            className="h-48 mb-8 object-contain"
+          />
           <p className="text-amber-100 text-xl text-center max-w-md">
             Jouw persoonlijke gitaarles platform
           </p>
@@ -70,10 +69,11 @@ export default function LoginPage() {
       <div className="w-full lg:w-1/2 flex items-center justify-center p-8">
         <div className="w-full max-w-sm">
           <div className="lg:hidden flex items-center gap-3 mb-8 justify-center">
-            <div className="bg-amber-100 p-3 rounded-xl">
-              <Guitar className="w-8 h-8 text-amber-700" />
-            </div>
-            <span className="text-2xl font-bold">Strummer</span>
+            <img 
+              src="/strummer_academy_logo.png" 
+              alt="Strummer Academy" 
+              className="h-16 object-contain"
+            />
           </div>
 
           <h2 className="text-2xl font-bold mb-1">

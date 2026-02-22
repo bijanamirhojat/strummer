@@ -39,12 +39,12 @@ export default function MessagesPage() {
       return
     }
 
-    const otherProfiles = profile.role === 'teacher' 
-      ? profiles.filter(p => p.role === 'student')
-      : profiles.filter(p => p.role === 'teacher')
+    const otherProfiles: Profile[] = profile.role === 'teacher' 
+      ? profiles.filter((p: Profile) => p.role === 'student')
+      : profiles.filter((p: Profile) => p.role === 'teacher')
 
     const conversationsWithMessages = await Promise.all(
-      otherProfiles.map(async (p) => {
+      otherProfiles.map(async (p: Profile) => {
         const { data: messages } = await supabase
           .from('messages')
           .select('*')
@@ -125,7 +125,7 @@ export default function MessagesPage() {
   useEffect(() => {
     const channel = supabase
       .channel('messages')
-      .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'messages' }, (payload) => {
+      .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'messages' }, (payload: { new: Message }) => {
         const newMessage = payload.new as Message
         if (selectedProfile && (newMessage.sender_id === selectedProfile.id || newMessage.sender_id === profile?.id)) {
           setMessages(prev => [...prev, newMessage])
@@ -300,9 +300,9 @@ export default function MessagesPage() {
                   <button
                     type="submit"
                     disabled={!newMessage.trim() || sending}
-                    className="btn-primary px-4"
+                    className="btn btn-primary px-4"
                   >
-                    <Send className="w-5 h-5" />
+                    <Send className="w-4 h-4" />
                   </button>
                 </div>
               </form>

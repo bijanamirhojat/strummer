@@ -18,6 +18,7 @@ export interface Assignment {
   due_date: string
   completed: boolean
   created_at: string
+  student?: Profile
 }
 
 export interface Video {
@@ -27,6 +28,7 @@ export interface Video {
   description: string
   video_url: string
   video_type: 'youtube' | 'vimeo'
+  is_public?: boolean
   created_at: string
   video_access?: VideoAccess[]
 }
@@ -51,7 +53,7 @@ export interface Schedule {
   id: string
   teacher_id: string
   student_id: string
-  day_of_week: number
+  date: string
   start_time: string
   end_time: string
   created_at: string

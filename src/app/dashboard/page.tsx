@@ -256,7 +256,7 @@ function TeacherOverview() {
           </div>
         </Link>
 
-        <Link href="/dashboard" className="card p-5 group hover:border-amber-500">
+        <Link href="/dashboard/assignments" className="card p-5 group hover:border-amber-500">
           <div className="flex items-center gap-4">
             <div className="w-12 h-12 bg-purple-100 dark:bg-purple-900/30 rounded-xl flex items-center justify-center">
               <CheckCircle className="w-6 h-6 text-purple-600" />

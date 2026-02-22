@@ -44,6 +44,7 @@ create table public.videos (
   description text,
   video_url text not null,
   video_type text not null check (video_type in ('youtube', 'vimeo')),
+  is_public boolean default false,
   created_at timestamptz default now()
 );
 
@@ -69,7 +70,7 @@ create table public.schedule (
   id uuid default gen_random_uuid() primary key,
   teacher_id uuid references public.profiles(id) on delete cascade not null,
   student_id uuid references public.profiles(id) on delete cascade not null,
-  day_of_week int not null check (day_of_week >= 0 and day_of_week <= 6),
+  date date not null,
   start_time text not null,
   end_time text not null,
   created_at timestamptz default now()
@@ -89,12 +90,13 @@ create policy "Students can view own assignments" on public.assignments for sele
   auth.uid() = student_id
 );
 
--- Videos: teachers can CRUD, students can read accessible
+-- Videos: teachers can CRUD, students can read accessible or public
 create policy "Teachers can manage videos" on public.videos for all using (
   exists (select 1 from public.profiles where id = auth.uid() and role = 'teacher')
 );
 create policy "Students can view accessible videos" on public.videos for select using (
   exists (select 1 from public.profiles where id = auth.uid() and role = 'teacher') or
+  is_public = true or
   exists (select 1 from public.video_access where video_id = public.videos.id and student_id = auth.uid())
 );
 
